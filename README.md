@@ -1,5 +1,8 @@
 # Retrofit-And-Filter-Data
-this is example of android project include web api calling through retrofit, image load usign glide and filter data usign guava
+android project includes following 
+1. Web api calling through retrofit library
+2. Image loading using glide library
+3. Filter data using guava library
 
 ## User List Screen
 
