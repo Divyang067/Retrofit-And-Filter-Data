@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Retrofit And Filter Data</string>
+    <string name="dialog_action_ok">Ok</string>
+    <string name="dialog_error_title">Error</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="search">Search</string>
+</resources>
