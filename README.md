@@ -1,5 +1,5 @@
 # Retrofit-And-Filter-Data
-android project includes following 
+Android project includes following 
 1. Web api calling through retrofit library
 2. Image loading using glide library
 3. Filter data using guava library
