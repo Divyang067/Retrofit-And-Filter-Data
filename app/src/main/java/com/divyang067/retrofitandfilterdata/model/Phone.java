@@ -59,21 +59,21 @@ public class Phone {
                 if (TextUtils.isEmpty(allPhone)) {
                     allPhoneString = getMobile();
                 } else {
-                    allPhoneString = allPhoneString + "," + getMobile();
+                    allPhoneString = allPhoneString + ", " + getMobile();
                 }
             }
             if (!TextUtils.isEmpty(getHome())) {
                 if (TextUtils.isEmpty(allPhoneString)) {
                     allPhoneString = getHome();
                 } else {
-                    allPhoneString = allPhoneString + "," + getHome();
+                    allPhoneString = allPhoneString + ", " + getHome();
                 }
             }
             if (!TextUtils.isEmpty(getOffice())) {
                 if (TextUtils.isEmpty(allPhoneString)) {
                     allPhoneString = getOffice();
                 } else {
-                    allPhoneString = allPhoneString + "," + getOffice();
+                    allPhoneString = allPhoneString + ", " + getOffice();
                 }
             }
             allPhone = allPhoneString;
