@@ -24,7 +24,7 @@ public final class DialogUtils {
     /**
      * make one static instance to access any time from any class
      *
-     * @return
+     * @return dialog instance
      */
     public static DialogUtils getInstance() {
         if (dialogFactory == null) {
@@ -36,10 +36,10 @@ public final class DialogUtils {
     /**
      * create simple ok error dialog using string
      *
-     * @param context
-     * @param title
-     * @param message
-     * @return
+     * @param context context
+     * @param title title of dialog
+     * @param message message of dialog
+     * @return dialog object
      */
     public Dialog createSimpleOkErrorDialog(Context context, String title, String message) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
@@ -52,10 +52,10 @@ public final class DialogUtils {
     /**
      * create simple ok error dialog using resource string
      *
-     * @param context
-     * @param titleResource
-     * @param messageResource
-     * @return
+     * @param context context
+     * @param titleResource title resource of dialog
+     * @param messageResource message resource of dialog
+     * @return dialog object
      */
     public Dialog createSimpleOkErrorDialog(Context context,
                                             @StringRes int titleResource,
@@ -69,9 +69,9 @@ public final class DialogUtils {
     /**
      * create generic error dialog using string
      *
-     * @param context
-     * @param message
-     * @return
+     * @param context context
+     * @param message message of dialog
+     * @return dialog object
      */
     public Dialog createGenericErrorDialog(Context context, String message) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
@@ -84,9 +84,9 @@ public final class DialogUtils {
     /**
      * create generic error dialog using resource string
      *
-     * @param context
-     * @param messageResource
-     * @return
+     * @param context context
+     * @param messageResource message resource of dialog
+     * @return dialog
      */
     public Dialog createGenericErrorDialog(Context context, @StringRes int messageResource) {
         return createGenericErrorDialog(context, context.getString(messageResource));
@@ -95,9 +95,9 @@ public final class DialogUtils {
     /**
      * create progress dialog using string
      *
-     * @param context
-     * @param message
-     * @return
+     * @param context context
+     * @param message message of progress dialog
+     * @return progress dialog object
      */
     public ProgressDialog createProgressDialog(Context context, String message) {
         ProgressDialog progressDialog = new ProgressDialog(context);
@@ -110,9 +110,9 @@ public final class DialogUtils {
     /**
      * create progress dialog using resource string
      *
-     * @param context
-     * @param messageResource
-     * @return
+     * @param context context
+     * @param messageResource message resource of progress dialog
+     * @return progress dialog object
      */
     public ProgressDialog createProgressDialog(Context context,
                                                @StringRes int messageResource) {

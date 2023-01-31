@@ -1,4 +1,3 @@
-
 package com.divyang067.retrofitandfilterdata.model;
 
 import com.google.gson.annotations.Expose;

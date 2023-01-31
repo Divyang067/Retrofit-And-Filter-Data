@@ -41,7 +41,7 @@ public class BaseActivity extends AppCompatActivity {
     /**
      * show error
      *
-     * @param message
+     * @param message error message
      */
     public void showError(String message) {
         DialogUtils.getInstance().createGenericErrorDialog(this, message).show();
