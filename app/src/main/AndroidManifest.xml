@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.divyang067.retrofitandfilterdata">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- internet -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,14 +17,18 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".ui.activity.MainActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

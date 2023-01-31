@@ -4,4 +4,8 @@
     <string name="dialog_error_title">Error</string>
     <string name="please_wait">Please Wait</string>
     <string name="search">Search</string>
+    <string name="about">about</string>
+    <string name="about_application">About Application</string>
+    <string name="about_description">Android project includes with following topics\n\n1. Web api calling through retrofit library\n2. Image loading using glide library\n3. Filter data using guava library\n\nAndroid project source code github link :\n\nhttps://github.com/Divyang067/Retrofit-And-Filter-Data \n\nclick link to redirect page of source code.\n\nThanks</string>
+
 </resources>

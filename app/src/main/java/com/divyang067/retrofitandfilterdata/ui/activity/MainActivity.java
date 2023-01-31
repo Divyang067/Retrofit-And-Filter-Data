@@ -1,15 +1,19 @@
 package com.divyang067.retrofitandfilterdata.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.divyang067.retrofitandfilterdata.R;
 import com.divyang067.retrofitandfilterdata.databinding.ActivityMainBinding;
@@ -24,6 +28,7 @@ import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,17 +64,14 @@ public class MainActivity extends BaseActivity {
      */
     private void initListener() {
 
-        binding.srlUserList.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
+        binding.srlUserList.setOnRefreshListener(() -> {
 
-                Utils.hideKeyboardFrom(getBaseContext(), MainActivity.this.getCurrentFocus());
+            Utils.hideKeyboardFrom(getBaseContext(), MainActivity.this.getCurrentFocus());
 
-                binding.edtSearch.setText("");
-                binding.edtSearch.clearFocus();
-                //call web api for reload data
-                getUserListCall();
-            }
+            binding.edtSearch.setText("");
+            binding.edtSearch.clearFocus();
+            //call web api for reload data
+            getUserListCall();
         });
 
         binding.edtSearch.addTextChangedListener(new TextWatcher() {
@@ -95,7 +97,7 @@ public class MainActivity extends BaseActivity {
     /**
      * filter data from search string
      *
-     * @param filterString
+     * @param filterString filter string
      */
     private void filterData(String filterString) {
         List<Contact> filteredList = Lists.newArrayList(Collections2.filter(allUserData,
@@ -106,7 +108,7 @@ public class MainActivity extends BaseActivity {
     /**
      * predicate for filter contact data from list
      */
-    public final class ContactFilter implements Predicate<Contact> {
+    public static final class ContactFilter implements Predicate<Contact> {
         private final String filterString;
 
         public ContactFilter(final String filterString) {
@@ -141,7 +143,7 @@ public class MainActivity extends BaseActivity {
 
         RetroClient.getInstance().getApiService().getContacts().enqueue(new Callback<GetUserListRs>() {
             @Override
-            public void onResponse(Call<GetUserListRs> call, Response<GetUserListRs> response) {
+            public void onResponse(@NonNull Call<GetUserListRs> call, @NonNull Response<GetUserListRs> response) {
                 //hide progress
                 hideProgress();
 
@@ -156,7 +158,9 @@ public class MainActivity extends BaseActivity {
                     setAdapterData(allUserData);
                 } else {
                     try {
-                        showError(response.errorBody().string());
+                        if (response.errorBody() != null) {
+                            showError(response.errorBody().string());
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -164,7 +168,7 @@ public class MainActivity extends BaseActivity {
             }
 
             @Override
-            public void onFailure(Call<GetUserListRs> call, Throwable t) {
+            public void onFailure(@NonNull Call<GetUserListRs> call, @NonNull Throwable t) {
                 //hide progress
                 hideProgress();
 
@@ -181,7 +185,7 @@ public class MainActivity extends BaseActivity {
     /**
      * set adapter data on recycler view
      *
-     * @param list_contact
+     * @param list_contact list of contact data
      */
     private void setAdapterData(List<Contact> list_contact) {
         if (userAdapter == null) {
@@ -192,11 +196,26 @@ public class MainActivity extends BaseActivity {
         if (binding.rvUserList.getAdapter() == null) {
             binding.rvUserList.setLayoutManager(new LinearLayoutManager(getBaseContext(), RecyclerView.VERTICAL, false));
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getBaseContext(), RecyclerView.VERTICAL);
-            dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.list_divider));
+            dividerItemDecoration.setDrawable(Objects.requireNonNull(AppCompatResources.getDrawable(getBaseContext(), R.drawable.list_divider)));
             binding.rvUserList.addItemDecoration(dividerItemDecoration);
             binding.rvUserList.setAdapter(userAdapter);
         }
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_about, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_menu_about) {
+            Intent intentInfo = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intentInfo);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

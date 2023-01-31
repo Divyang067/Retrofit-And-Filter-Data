@@ -26,7 +26,7 @@ public class Utils {
     /**
      * check internet connected or not
      *
-     * @return
+     * @return internet connected or not in boolean (true or false)
      */
     public static boolean isConnected() {
         ConnectivityManager cm = (ConnectivityManager) App.getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -35,16 +35,12 @@ public class Utils {
         if (activeNetwork != null && activeNetwork.isConnected()) {
             try {
                 URL url = new URL("http://www.google.com/");
-                HttpURLConnection urlc = (HttpURLConnection) url.openConnection();
-                urlc.setRequestProperty("User-Agent", "test");
-                urlc.setRequestProperty("Connection", "close");
-                urlc.setConnectTimeout(1000); // mTimeout is in seconds
-                urlc.connect();
-                if (urlc.getResponseCode() == 200) {
-                    return true;
-                } else {
-                    return false;
-                }
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestProperty("User-Agent", "test");
+                urlConnection.setRequestProperty("Connection", "close");
+                urlConnection.setConnectTimeout(1000); // mTimeout is in seconds
+                urlConnection.connect();
+                return urlConnection.getResponseCode() == 200;
             } catch (IOException e) {
                 Log.i("warning", "Error checking internet connection", e);
                 return false;
@@ -58,16 +54,14 @@ public class Utils {
     /**
      * hide keyboard
      *
-     * @param context
-     * @param view
+     * @param context context
+     * @param view view
      */
     public static void hideKeyboardFrom(Context context, View view) {
         try {
             InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } catch (Error e) {
+        } catch (Exception | Error e) {
             e.printStackTrace();
         }
     }
