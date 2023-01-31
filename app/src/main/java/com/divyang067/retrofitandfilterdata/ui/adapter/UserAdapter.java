@@ -23,7 +23,6 @@ import com.divyang067.retrofitandfilterdata.model.Contact;
 
 import java.util.List;
 
-
 /**
  * Created by divyang067 on 2019/08/29.
  *
@@ -39,7 +38,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     /**
      * refresh and reload adapter data
      *
-     * @param listData
+     * @param listData list data of contact
      */
     public void doRefresh(List<Contact> listData) {
         this.listData = listData;
@@ -93,8 +92,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     /**
      * get single item data from list by position
      *
-     * @param position
-     * @return
+     * @param position list child position
+     * @return get contact data
      */
     private Contact getItem(int position) {
         return listData.get(position);

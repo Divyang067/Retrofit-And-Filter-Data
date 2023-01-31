@@ -1,7 +1,8 @@
 package com.divyang067.retrofitandfilterdata;
 
-import android.app.Application;
 import android.content.Context;
+
+import androidx.multidex.MultiDexApplication;
 
 /**
  * Created by divyang067 on 2019/08/29.
@@ -10,23 +11,23 @@ import android.content.Context;
  * <p>
  * application class
  */
-public class App extends Application {
+public class App extends MultiDexApplication {
 
     //context
-    private static Context context;
+    private static App appInstance;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this;
+        appInstance = this;
     }
 
     /**
      * get application context
      *
-     * @return
+     * @return application context
      */
     public static Context getAppContext() {
-        return context;
+        return appInstance.getApplicationContext();
     }
 }

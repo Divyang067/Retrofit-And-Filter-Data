@@ -20,7 +20,7 @@ public class RetroClient {
     /**
      * make one static instance to access any time from any class
      *
-     * @return
+     * @return retrofit client instance
      */
     public static RetroClient getInstance() {
         if (retroClient == null) {
@@ -33,7 +33,7 @@ public class RetroClient {
     /**
      * Get Retrofit Instance
      *
-     * @return
+     * @return get retrofit instance
      */
     private Retrofit getRetrofitInstance() {
         return new Retrofit.Builder()
@@ -45,7 +45,7 @@ public class RetroClient {
     /**
      * Get API Service
      *
-     * @return
+     * @return get api service
      */
     public ApiService getApiService() {
         return getRetrofitInstance().create(ApiService.class);

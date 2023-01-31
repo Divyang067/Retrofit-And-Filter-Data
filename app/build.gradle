@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.divyang067.retrofitandfilterdata"
-        minSdkVersion 15
-        targetSdkVersion 31
+        minSdkVersion 19
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         flavorDimensions "default"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -22,20 +23,28 @@ android {
 
     productFlavors {
         Develop {
-            applicationId "com.divyang067.retrofitandfilterdata"
+            applicationId "com.divyang067.retrofitandfilterdata.dev"
             versionCode 1
             versionName "1.0"
 
             buildConfigField "String", "SERVER_URL", '"http://demo7756364.mockable.io"'
         }
         Staging {
-            applicationId "com.divyang067.retrofitandfilterdata1"
+            applicationId "com.divyang067.retrofitandfilterdata.beta"
+            versionCode 1
+            versionName "1.0"
+
+            buildConfigField "String", "SERVER_URL", '"http://demo7756364.mockable.io"'
+        }
+        Production {
+            applicationId "com.divyang067.retrofitandfilterdata"
             versionCode 1
             versionName "1.0"
 
             buildConfigField "String", "SERVER_URL", '"http://demo7756364.mockable.io"'
         }
     }
+    namespace 'com.divyang067.retrofitandfilterdata'
 
 }
 
@@ -43,28 +52,30 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //appcompat ui component
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-
-    //recycleview for display data
+    //recyclerview for display data
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     //material design for access design component
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.material:material:1.8.0'
 
     //gson for data parsing
-    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     //retrofit for web api calling
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //glide for image loading
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     //guava for filter pojo
     implementation 'com.google.guava:guava:31.1-android'
+
+    //multidex
+    implementation 'com.android.support:multidex:1.0.3'
 
 }
